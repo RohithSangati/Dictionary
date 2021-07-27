@@ -1,0 +1,42 @@
+{% extends 'home.html' %}
+
+{% block content %}
+    <a href='/' class='reset'>Reset</a>
+    {% if meanings == 'error' and antonyms == 'error' and synonyms == 'error' %}
+        <h1 class="error">Enter valid input</h1>
+    {% else %}
+        <h1 class='heading'>Meaning:</h1>
+        {% if meanings == 'error' %}
+            <p class='subheading'>No results found</p>
+        {% else %}
+            {% for key,value in meanings.items %}
+                <p class='subheading'>{{key}}:</p>
+                <div class='stuff'>
+                    {% for item in value %} 
+                        <span>{{item}}  </span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h1 class='heading'>Antonyms</h1>
+        {% if antonyms == 'error' %}
+            <p class='stuff'>No results found</p>
+        {% else %}
+            <div class='stuff'>
+                {% for antonym in antonyms %}
+                    <span>{{antonym}}  </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h1 class='heading'>Synonyms</h1>
+        {% if synonyms == 'error' %}
+            <p class='stuff'>No results found</p>
+        {% else %}
+            <div class='stuff'>
+                {% for synonym in synonyms %}
+                    <span>{{synonym}}  </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
